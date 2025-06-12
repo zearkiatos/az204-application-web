@@ -20,7 +20,7 @@ $ Get-Command *AzWebApp*
 4. Validate user
 
 ```ps
-$ Connect-AzAccount
+$ Connect-AzAccount -TenantId [Subscrition Id]
 ```
 
 5. Verify context
@@ -45,4 +45,10 @@ $ New-AzAppServicePlan -Name 'az-204-appservice-plan' -Location 'EastUS' -Resour
 
 ```ps
 $ New-AzWebApp -ResourceGroupName 'az-204-application-service' -Name 'az204-application-web' -Location 'EastUS' -AppServicePlan 'az-204-appservice-plan'
+```
+
+9. Review your application
+
+```ps
+$ Get-AzResource -ResourceGroupName 'az-204-application-service'
 ```
