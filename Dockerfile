@@ -1,4 +1,4 @@
-FROM acr.microsoft.com/dotnetaspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
 EXPOSE 8080
@@ -9,8 +9,9 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["./az204-application-web/az204-application-web.csproj", "."]
 RUN dotnet restore "./az204-application-web.csproj"
+COPY ./az204-application-web/. .
 WORKDIR "/src/."
-RUN dotnet "./az204-application-web.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./az204-application-web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
